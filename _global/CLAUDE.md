@@ -1,5 +1,16 @@
 # 全域 CLAUDE.md — Gary
 
+## 雲端 session（claude.ai Claude Code on the web）的例外（2026-10-26 起）
+
+這份檔案同時用在 Mac 本機和雲端容器（由 `claude-skills` 倉庫的啟動腳本複製到 `~/.claude/CLAUDE.md`）。雲端和本機的差別，以這一節為準，優先於下面所有段落，包括 pilotfish 的 Orchestration 區塊：
+
+- **判斷方式**：工作目錄在 `/home/user/`、沒有 `/Users/garypeng/`，就是雲端。
+- **開場載入 skill**：清單裡的 skill 若不在可用清單中，略過、不報錯、不要去安裝；`using-superpowers` 一定要載，其餘能載就載。
+- **具名角色不存在時**：雲端的 Agent 類型只有 `claude`、`Explore`、`Plan`、`general-purpose` 等內建型，沒有 `plan-verifier`、`verifier`、`security-reviewer`、`security-executor`、`mech-executor`、`executor`、`scout`。此時 Orchestration 區塊裡「必須呼叫獨立審查」的規定視為**不適用**：主對話自己做計畫審查與完成驗證（跑測試、逐項對照 acceptance），回報時明講「雲端沒有獨立驗證角色，這次由主對話自驗」，**不要因為找不到角色而暫停**。需要我同意的事（併 main、部署、對外動作、安全規則）仍然要先問我。
+- **本機才有的東西**：Codex CLI（`codex-imagegen`）、`~/.claude/skills-archive/`、`~/.claude/skills.bak-*`、和旺專案的檔案路徑，在雲端都不存在；用到時說一聲改用替代方案，不要找。
+- **部署與需要本機登入的指令**（wrangler、Firebase、App Store 等）：雲端通常沒有登入，給我指令讓我在 Mac 上跑，路徑用該專案 CLAUDE.md 記的本機路徑。
+- **網路**：雲端出站受環境網路政策限制，連不到的網域（403）直接回報，不要重試繞路。
+
 ## 每次對話開始一律載入這些 skill（2026-07-08 起）
 
 不管開啟什麼對話、什麼專案，開場第一件事就是用 `Skill` 工具把以下技能載入，再回應使用者：
@@ -11,7 +22,7 @@
 5. `/canvas-design`
 6. `/planning-with-files`
 
-（`/using-superpowers` 一定第一個載入，它負責建立找 skill、用 skill 的規矩。）
+（`/using-superpowers` 一定第一個載入，它負責建立找 skill、用 skill 的規矩。雲端 session 若某個 skill 不在清單裡就略過，見最上面「雲端 session 的例外」。）
 
 （`/graphify` 自 2026-08-16 起加入常駐載入清單：不管有沒有 `graphify-out/`，開場就把它載入，之後任何「這個 codebase 怎麼運作 / 檔案關係 / 專案內容」的問題一律先當 graphify 查詢處理。）
 
