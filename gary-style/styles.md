@@ -1,8 +1,8 @@
-# 風格卡
+# 風格卡（上游風格，A～P）
 
-每張卡是我自己整理的摘要，用來「選」風格。真正的審美規則和 prompt 模板在上游原檔，選定後才去讀。
+每張卡是自己整理的摘要，用來「選」風格。真正的審美規則和 prompt 模板在上游原檔，選定後才去讀。
 
-`$V` = `~/.claude/photo-style-vendor`
+`$V` = `~/.claude/gary-style-vendor`
 
 欄位說明：
 - **素材**：需要照片／只要文字／都可以
@@ -120,3 +120,51 @@
 - 素材：都可以
 - 長相：一到兩種油墨、孔版／risograph 感、強烈的襯線／無襯線字體張力、短句
 - 最適合：文化活動海報、宣言、編輯頁面
+
+## L. kimi-tech — 安靜的科技感視覺／資訊圖
+
+- 上游：kimi-inspired-poster（MIT ✅；不得用 Kimi 官方 logo 或暗示官方）
+- 素材：只要文字
+- 兩條分支，**不要混用**：
+  - 海報／封面：生成一張點陣圖＋最終 prompt
+  - 資訊圖／PPT 配圖／流程圖／框架圖／時間線／數據卡：輸出可編輯 SVG＋PNG（文字多、要精準時走這條）
+- 長相：冷靜、運算感、乾淨的科技視覺
+- 最適合：AI 產品發表、模型評測、課程或文章的資訊圖
+- 注意：上游要求先確認走哪個分支；使用者說「直接做」才跳過
+- 入口：`$V/kimi-inspired-poster/SKILL.md`
+
+## M. github-daily — GitHub 熱門開源中文日報海報
+
+- 上游：skills_collection／github-trending-wan-skill（無授權檔 ❌，只當個人參考）
+- 素材：不用素材，抓當下 GitHub Trending 前 5 名
+- 長相：低資訊密度的中文簡報海報，3:4，上游內建 10 種視覺風格可選
+- 最適合：每天一張開源日報、技術帳號固定欄目
+- 注意：上游原本用 Wan 2.7 API 出圖，**不要用**，改走 codex-imagegen；抓榜單時先看過它的腳本再決定是否執行，或直接用 `gh`／網頁自己抓；榜單是即時快照，不能說成某個歷史日期的榜單
+- 入口：`$V/skills_collection/github-trending-wan-skill/SKILL.md`
+
+## N. crt-interface — CRT 復古電腦介面插畫
+
+- 上游：tait-crt-interface-skill（無授權檔 ❌，只當個人參考）
+- 素材：人像、團體照、動物、物件，或一個主題
+- 長相：1980 年代點陣誇張漫畫人物，壓在早期 Macintosh／Minitel 風格的視窗下；CRT 弧形邊緣；棋盤格中間調
+- 情緒：極客、怪誕、復古科技
+- 最適合：個人頭像、團隊合照的趣味版、復古科技主題
+- 注意：上游有兩段式詢問（配色、比例），以及可選的三種預設（街頭怪誕、巨像符號、冷面幾何）；用 `portable-direct` 路線，不跑它的 Python
+- 入口：`$V/tait-crt-interface-skill/SKILL.md`（很長，約 38KB）
+
+## O. dreamcore — 夢核超現實拼貼海報
+
+- 上游：dreamcore-collage-poster（MIT ✅）
+- 素材：都可以（主題或參考照片，最多 5 張融合）
+- 長相：高密度直式拼貼；一個主錨點＋重複放大的局部（眼睛、手、螢幕、窗）＋記憶場景＋半透明幾何色塊＋不可能的比例；CRT／網點／JPEG 壓縮質感
+- 情緒：不安、懷舊、超現實、數位記憶
+- 最適合：高情緒的主題、音樂、藝術活動
+- 跟 A 的差別：A 是稀疏留白，O 是滿版高密度，剛好相反
+- 入口：`$V/dreamcore-collage-poster/SKILL.md`
+
+## P. eachlabs — 素材庫（100+ 個小 skill）
+
+- 上游：eachlabs/skills（無授權檔 ❌，只當個人參考）
+- **不是一個風格**，是 100 多個生成類 skill 的合集：海報、書封、專輯封面、logo、名片、傳單、資訊圖、IG 內容等
+- 用法：只拿來翻 prompt 寫法與版型分類當靈感。它們全部依賴 each::sense 付費 API，**不要呼叫**
+- 找法：`ls $V/skills/skills/` 看分類，例如 `poster-design-generation`、`book-cover-generation`、`album-cover-generation`、`logo-generation`、`flyer-design-generation`、`infographic-generation`
