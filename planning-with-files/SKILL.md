@@ -13,11 +13,9 @@ allowed-tools:
   - WebFetch
   - WebSearch
 hooks:
-  PreToolUse:
-    - matcher: "Write|Edit|Bash|Read|Glob|Grep"
-      hooks:
-        - type: command
-          command: "cat task_plan.md 2>/dev/null | head -30 || true"
+  # 2026-11-12 移除 PreToolUse hook（每次工具呼叫前貼 task_plan.md 前 30 行）。
+  # 盤點對話紀錄發現它貼了 20,526 次、約 1,930 萬 token，佔主對話成本約 6.5%。
+  # 要看計畫就照下面 Critical Rules 第 3 條，在做決定前自己讀 task_plan.md。
   PostToolUse:
     - matcher: "Write|Edit"
       hooks:
