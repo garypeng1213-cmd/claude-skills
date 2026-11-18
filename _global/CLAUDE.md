@@ -74,6 +74,7 @@
 | 排程、循環任務 | 內建 `/schedule`、`/loop` |
 | 生圖／改圖（點陣圖：插畫、icon、配圖、素材） | `codex-imagegen`（透過 Codex CLI `image_gen`，預設生圖路徑） |
 | 深度研究 | 內建 `deep-research` |
+| 畫 CAD／重繪圖說／PDF 轉 DWG、圖層、CTB、關聯標註（2026-11-18 起） | `cad-drawing`（Gary 的 CAD 規範：硬性要求、流程、AutoCAD Mac 操作；一律照它走） |
 | 建 MCP / 設計 agent 工具 | `mcp-builder`、`tool-design` |
 | 問 codebase 架構／檔案關係／專案內容 | `graphify`（專案裡有 `graphify-out/` 才載入，直接當查詢用；沒有就照一般方式讀程式碼） |
 | 「幫我潤飾」／「幫我撰寫文案」（2026-11-10 起） | 自動套用 `sepia`（外掛 `sepia@sepia`），不用我另外說：潤飾既有文字 → `sepia:sepia-refactor`；撰寫新文案 → `sepia:sepia-write`；不確定走哪條就用總入口 `sepia:sepia` |

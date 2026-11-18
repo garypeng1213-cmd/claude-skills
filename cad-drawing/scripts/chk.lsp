@@ -1,0 +1,10 @@
+(defun c:P17CHK ( / ss i e ed r a s)
+  (setq ss (ssget "X" '((0 . "DIMENSION"))) i 0 s "")
+  (repeat (sslength ss)
+    (setq e (ssname ss i) ed (entget e) a "-")
+    (foreach r ed
+      (if (and (= (car r) 330) (= (cdr (assoc 0 (entget (cdr r)))) "DIMASSOC"))
+        (setq a (itoa (cdr (assoc 90 (entget (cdr r))))))))
+    (setq s (strcat s (cdr (assoc 5 ed)) ":" a " "))
+    (setq i (1+ i)))
+  (princ (strcat "\nCHK " s)) (princ))

@@ -1,0 +1,2 @@
+(progn (setvar "FILEDIA" 0) (command "-PLOT" "Y" "" "DWG To PDF.pc3" "ISO full bleed A3 (420.00 x 297.00 MM)" "M" "L" "N" "L" "1:1" "0,0" "Y" "P17-LW.ctb" "Y" "N" "N" "N" "$SP/work/p17-v7.pdf" "Y" "Y") (princ))
+(command "_QSAVE")

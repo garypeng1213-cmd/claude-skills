@@ -1,0 +1,5 @@
+(defun p17dl (h idx v / e ed p)
+  (setq e (handent h) ed (entget e) p (cdr (assoc 10 ed)))
+  (setq p (if (= idx 0) (list v (cadr p) 0.0) (list (car p) v 0.0)))
+  (setq ed (subst (cons 10 p) (assoc 10 ed) ed)) (entmod ed) (entupd e))
+(defun c:P17DL () (p17dl "CFF" 1 1212.24) (p17dl "D5B" 0 1206.26) (princ "\nDL done") (princ))

@@ -1,0 +1,7 @@
+(defun c:P17MEAS ( / ss i ed s)
+  (setq ss (ssget "X" '((0 . "DIMENSION"))) i 0 s "")
+  (repeat (sslength ss)
+    (setq ed (entget (ssname ss i)))
+    (setq s (strcat s (cdr (assoc 5 ed)) "=" (rtos (cdr (assoc 42 ed)) 2 1) " "))
+    (setq i (1+ i)))
+  (princ (strcat "\nMEAS " s)) (princ))
